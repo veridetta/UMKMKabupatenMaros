@@ -26,14 +26,14 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             @if (Auth::user()->role == 2)
               <img src="{{asset('img/avatar.png')}}" class="rounded-circle" alt="">
-              <span class="d-none d-md-block dropdown-toggle ps-2">{{$data?->nama_sekolah}}</span>
+              <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->username}}</span>
             @elseif (Auth::user()->role == 1)
-              @if ($data->foto)
+              @if ($data?->foto)
              <img src="{{ asset('storage/'.$data->foto) }}" style=" width: 50px;height: 50px;border-radius: 50%;" alt="Profile" alt="">
               @else
                 <img src="{{asset('img/avatar.png')}}" class="rounded-circle" alt="">
               @endif
-              <span class="d-none d-md-block dropdown-toggle ps-2">{{$data->nama_pemilik ? $data->nama_pemilik : 'Anonymouse'}}</span>   
+              <span class="d-none d-md-block dropdown-toggle ps-2">{{$data?->nama_pemilik ? $data->nama_pemilik : 'Anonymouse'}}</span>   
             @elseif (Auth::user()->role == 3)   
               <img src="{{asset('img/avatar.png')}}" class="rounded-circle" alt="">
               <span class="d-none d-md-block dropdown-toggle ps-2">Admin Kabupaten</span>   

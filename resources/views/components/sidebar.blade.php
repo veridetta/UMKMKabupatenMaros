@@ -22,7 +22,7 @@
                 </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
-                <a class="nav-link {{(strpos(Route::currentRouteName(), 'user.cetak-formulir') === 0 ? '' : 'collapsed')}}" href="{{route('user.data-umkm')}}">
+                <a class="nav-link {{(strpos(Route::currentRouteName(), 'user.data-umkm') === 0 ? '' : 'collapsed')}}" href="{{route('user.data-umkm')}}">
                 <i class="bi bi-people"></i>
                 <span>Data UMKM</span>
                 </a>

@@ -22,10 +22,8 @@ class UmkmController extends Controller
     {
         // return Auth::user()->siswas;
         $users = DB::table('umkms')->where('users_id',Auth::user()->id)->first();
-        $sekolah = Sekolah::all();
         return view('user.umkm.index',[
-            'umkm' => $users,
-            'sekolah' => $sekolah
+            'umkm' => $users
         ]);
     }
 
@@ -68,15 +66,7 @@ class UmkmController extends Controller
         $request->session()->flash('success', "Berhasil Melakukan Update Data");
         return redirect(route('user.umkm.index'));
     }
-    public function updateDataOrangTua(Request $request,Umkm $umkm)
-    {
-        $id = $request->input('id');
-        $umkm = Umkm::find($id);
-
-        $umkm->updateOrCreate(['id' => $id], $request->all());
-        $request->session()->flash('success', "Berhasil Melakukan Update Data");
-        return redirect(route('user.siswa.index'));
-    }
+   
     public function uploadFoto(Foto $request,Umkm $umkm)
     {
         // return $request->all();

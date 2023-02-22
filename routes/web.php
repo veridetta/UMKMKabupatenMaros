@@ -44,38 +44,12 @@ Route::middleware(['auth'])->group(function(){
     Route::post('update-password',[UserController::class,'updatePassword'])->name('update-password');
     Route::prefix('user/home')->name('user.')->middleware('ensureUserRole:1')->group(function(){
         Route::get('/',[UserDashboard::class,'index'])->name('dashboard');
-        //
-        //old
-        //Route::resource('siswa',SiswaController::class);
-        //baru
         Route::resource('umkm', UmkmController::class);
-        //
-        //old
-        //Route::put('/siswa/data-alamat/{siswa}',[SiswaController::class,'updateDataAlamat'])->name('siswa.updateDataAlamat');
-        //baru
         Route::post('/umkm/data-alamat',[UmkmController::class,'updateDataAlamat'])->name('umkm.updateDataAlamat');
-        //
-        //old
-        Route::put('/siswa/data-orangtua/{siswa}',[SiswaController::class, 'updateDataOrangTua'])->name('siswa.updateDataOrangTua');
-        //
-        //old
-        Route::put('/siswa/pilihan-sekolah/{siswa}',[SiswaController::class, 'updatePilihanSekolah'])->name('siswa.updatePilihanSekolah');
-        //baru
         Route::post('/umkm/pilihan-kecamatan',[UmkmController::class, 'updatePilihanKecamatan'])->name('umkm.updatePilihanKecamatan');
-        //
-        //
-        //old
-        Route::put('/siswa/upload-foto/{siswa}',[SiswaController::class, 'uploadFoto'])->name('siswa.uploadFoto');
-        //baru
         Route::post('/umkm/upload-foto',[UmkmController::class, 'uploadFoto'])->name('umkm.uploadFoto');
-        //
         Route::resource('document',DocumentController::class);
-        //
-        //old
-        #Route::get('/cetak-formulir',[SiswaController::class, 'indexCetak'])->name('cetak-formulir');
-        //baru
         Route::get('/cetak-formulir',[UmkmController::class, 'indexCetak'])->name('cetak-formulir');
-        //
         Route::get('/download-pdf',[UmkmController::class, 'downloadPDF'])->name('download-pdf');
         Route::get('/show-pdf',[UmkmController::class, 'showPdf'])->name('show-pdf');
         Route::get('/data-umkm',[DataUmkmController::class,'index'])->name('data-umkm');
@@ -87,33 +61,11 @@ Route::middleware(['auth'])->group(function(){
     Route::prefix('admin/home')->name('admin.')->middleware('ensureAdminRole:2')->group(function(){
         //update
         Route::get('/',[AdminDashboard::class,'index'])->name('dashboard');
-
-        Route::resource('sekolah',SekolahController::class);
-        Route::put('/sekolah/alamat-lembaga/{sekolah}', [SekolahController::class, 'alamatLembaga'])->name('sekolah.alamatLembaga');
-
-        //old
-        Route::get('/data-siswa',[AdminSiswaController::class,'index'])->name('siswa.data-siswa');
-        //baru
         Route::get('/data-umkm',[AdminUmkmController::class,'index'])->name('umkm.data-umkm');
-        //old
-        Route::post('/edit-data-siswa',[AdminSiswaController::class,'edit'])->name('siswa.editDataSiswa');
-        //baru
         Route::post('/edit-data-umkm',[AdminUmkmController::class,'edit'])->name('umkm.editDataUmkm');
-        //old
-        Route::post('/update-data-siswa',[AdminSiswaController::class,'update'])->name('siswa.updateDataSiswa');
-        //baru
         Route::post('/update-data-umkm',[AdminUmkmController::class,'update'])->name('umkm.updateDataUmkm');
-        //
-        //old
-        Route::post('/hapus-data-siswa',[AdminSiswaController::class,'destroy'])->name('siswa.hapusDataSiswa');
-        //baru
         Route::post('/hapus-data-umkm',[AdminUmkmController::class,'destroy'])->name('umkm.hapusDataUmkm');
-        //
-        //old
-        #Route::get('/data-berkas',[AdminDocumentController::class,'index'])->name('siswa.index-document');
-        //baru
         Route::get('/data-berkas',[AdminDocumentController::class,'index'])->name('umkm.index-document');
-        //
         Route::get('/download-tempat/{id}',[AdminDocumentController::class,'downloadTempat'])->name('umkm.download_tempat');
         Route::get('/download-kk/{id}',[AdminDocumentController::class,'downloadKk'])->name('umkm.download_kk');
         Route::get('/download-ktp/{id}',[AdminDocumentController::class,'downloadKtp'])->name('umkm.download_ktp');
@@ -121,30 +73,9 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/edit-document',[AdminDocumentController::class,'edit'])->name('umkm.edit-document');
         Route::post('/update-document',[AdminDocumentController::class,'update'])->name('umkm.update-document');
         Route::post('/hapus-document',[AdminDocumentController::class,'destroy'])->name('umkm.destroy-document');
-        //old
-        #Route::post('/update-status',[AdminSiswaController::class,'updateStatus'])->name('siswa.update-status');
-        //baru
         Route::post('/update-status',[AdminUmkmController::class,'updateStatus'])->name('umkm.update-status');
     });
     
-    Route::prefix('admin-kab/home')->name('admin-kab.')->middleware('ensureAdminKabRole:3')->group(function(){
-        Route::get('/',[AdminKabDashboard::class,'index'])->name('dashboard');
-        Route::get('/data-siswa',[AdminKabSiswaController::class,'index'])->name('siswa.data-siswa');
-        Route::get('/users/ajax', [AdminKabSiswaController::class,'getUsers'])->name('get-users');
-        Route::get('/data-berkas',[AdminKabDocumentController::class,'index'])->name('siswa.index-document');
-        Route::get('/dwonload-file/{ijazah}',[AdminDocumentController::class,'downloadFile'])->name('siswa.downloadFile');
-        Route::get('/dwonload-kk/{id}',[AdminDocumentController::class,'downloadKk'])->name('siswa.downloadKk');
-        Route::get('/dwonload-akta-kelahiran/{id}',[AdminDocumentController::class,'download_akta_kelahiran'])->name('siswa.download_akta_kelahiran');
-        Route::get('/dwonload-rapor/{id}',[AdminDocumentController::class,'downloadRapor'])->name('siswa.download-rapor');
-        Route::post('/edit-document',[AdminDocumentController::class,'edit'])->name('siswa.edit-document');
-
-        Route::get('/data-sekolah',[AdminKabSekolahController::class,'index'])->name('sekolah.data-sekolah');
-        Route::post('/tambah-sekolah',[AdminKabSekolahController::class,'store'])->name('sekolah.tambah-sekolah');
-        Route::post('/hapus-sekolah',[AdminKabSekolahController::class,'destroy'])->name('sekolah.hapus-sekolah');
-
-
-    });
-
 });
 
 

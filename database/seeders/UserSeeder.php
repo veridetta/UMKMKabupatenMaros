@@ -128,7 +128,7 @@ class UserSeeder extends Seeder
             [
                 'username' => 'admin_01',
                 'password' => Hash::make('password'),
-                'role' => '3',
+                'role' => '2',
                  'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ],
 
