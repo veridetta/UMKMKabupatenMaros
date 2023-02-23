@@ -27,11 +27,11 @@ class DocumentController extends Controller
         // return $data[0]->siswas->nik;
 
         if(Request()->ajax()){
-            $data = Document::with(['umkms'])->get();
+            $data = Document::with(['siswas'])->get();
             $data_new = array();
+    
             foreach($data as $row){
-                #dd($row->umkms->users_id);
-                if($row->umkms->users_id){
+                if($row->siswas->sekolahs_id == Auth::user()->id){
                     array_push($data_new,$row);
                 }
             }
@@ -39,42 +39,42 @@ class DocumentController extends Controller
              return datatables()->of($data_new)
                 ->removeColumn('id')
                 ->addIndexColumn()
-                ->addColumn('nama_pemilik',function($data){
-                    return $data->umkms->nama_pemilik;
+                ->addColumn('nama',function($data){
+                    return $data->siswas->nama_lengkap;
                 })
-                ->addColumn('nama_usaha',function($data){
-                    return $data->umkms->nama_usaha;
+                ->addColumn('nisn',function($data){
+                    return $data->siswas->nisn;
                 })
                 ->addColumn('download_kartu_keluarga',function($data){
                     //download
                     // {{asset('storage/'.$siswa->foto)}}
-                    $button = "<a href='".route('admin.umkm.download_kk',$data->id)."' class='btn btn-primary btn-sm' data-bs-toggle='tooltip' data-bs-placement='top' title='Download'>
+                    $button = "<a href='".route('admin.siswa.downloadKk',$data->id)."' class='btn btn-primary btn-sm' data-bs-toggle='tooltip' data-bs-placement='top' title='Download'>
                                 <i class='bi bi-download'></i> Download
                                 </a>";
                    
                     return $button;
                 })
-                ->addColumn('download_ktp',function($data){
+                ->addColumn('download_akta_kelahiran',function($data){
                     //download
                     // {{asset('storage/'.$siswa->foto)}}
-                    $button = "<a href='".route('admin.umkm.download_ktp',$data->id)."' class='btn btn-primary btn-sm' data-bs-toggle='tooltip' data-bs-placement='top' title='Download'>
+                    $button = "<a href='".route('admin.siswa.download_akta_kelahiran',$data->id)."' class='btn btn-primary btn-sm' data-bs-toggle='tooltip' data-bs-placement='top' title='Download'>
                                 <i class='bi bi-download'></i> Download
                                 </a>";
                    
                     return $button;
                 })
-                ->addColumn('download_tempat',function($data){
+                ->addColumn('dwonload_ijazah',function($data){
                     //download
                     // {{asset('storage/'.$siswa->foto)}}
-                    $button = "<a href='".route('admin.umkm.download_tempat',$data->id)."' class='btn btn-primary btn-sm' data-bs-toggle='tooltip' data-bs-placement='top' title='Download'>
+                    $button = "<a href='".route('admin.siswa.downloadFile',$data->id)."' class='btn btn-primary btn-sm' data-bs-toggle='tooltip' data-bs-placement='top' title='Download'>
                                 <i class='bi bi-download'></i> Download
                                 </a>";
                    
                     return $button;
                 })
-                ->addColumn('download_sku',function($data){
-                    if($data->sku){
-                        $button = "<a href='".route('admin.umkm.download_sku',$data->id)."' class='btn btn-primary btn-sm' data-bs-toggle='tooltip' data-bs-placement='top' title='Download'>
+                ->addColumn('download_rapor',function($data){
+                    if($data->rapor){
+                        $button = "<a href='".route('admin.siswa.download-rapor',$data->id)."' class='btn btn-primary btn-sm' data-bs-toggle='tooltip' data-bs-placement='top' title='Download'>
                                     <i class='bi bi-download'></i> Download
                                     </a>";
                     }else{
@@ -97,18 +97,63 @@ class DocumentController extends Controller
                     
                     return $button;
                 })
-                ->rawColumns(['nama_pemilik','nama_usaha','download_kartu_keluarga','download_ktp','download_tempat','download_sku','action'])
+                ->rawColumns(['nama','nisn','download_kartu_keluarga','download_akta_kelahiran','dwonload_ijazah','download_rapor','action'])
                 ->make(true);
         }
-        return view(('user.admin.index-document'));
+        return view(('user.petugas_sekolah.index-document'));
     }
 
-    
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Document  $document
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Document $document)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Document  $document
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Request $request)
     {
         $document = Document::find($request->id);
         return response()->json(['data' => $document]);
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Document  $document
+     * @return \Illuminate\Http\Response
+     */
     public function update(EditUploadBerkas $request)
     {
         $document = Document::find($request->id); 
@@ -119,26 +164,26 @@ class DocumentController extends Controller
             }
             $data['kartu_keluarga'] = $request->file('kartu_keluarga')->store('assets/documents', 'public');
         }
-        if($request->file('ktp')){
-            $foto = public_path('storage/'.$document->ktp);
+        if($request->file('akta_kelahiran')){
+            $foto = public_path('storage/'.$document->akta_kelahiran);
             if (file_exists($foto)) {
                 unlink($foto);
             }
-            $data['ktp'] = $request->file('ktp')->store('assets/documents', 'public');
+            $data['akta_kelahiran'] = $request->file('akta_kelahiran')->store('assets/documents', 'public');
         }
-        if($request->file('sku')){
-            $file = public_path('storage/'.$document->sku);
-            if ($document->sku) {
-                unlink($file);
-            }
-            $data['sku'] = $request->file('sku')->store('assets/documents', 'public');
-        }
-        if($request->file('tempat')){
-            $foto = public_path('storage/'.$document->tempat);
+        if($request->file('ijazah')){
+            $foto = public_path('storage/'.$document->ijazah);
             if (file_exists($foto)) {
                 unlink($foto);    
             }
-            $data['tempat'] = $request->file('tempat')->store('assets/documents', 'public');
+            $data['ijazah'] = $request->file('ijazah')->store('assets/documents', 'public');
+        }
+        if($request->file('rapor')){
+            $file = public_path('storage/'.$document->rapor);
+            if ($document->rapor) {
+                unlink($file);
+            }
+            $data['rapor'] = $request->file('rapor')->store('assets/documents', 'public');
         }
         $document->update($data);
         
@@ -148,26 +193,35 @@ class DocumentController extends Controller
         
 
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Document  $document
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Request $request)
     {
         $id = $request->id;
         $data = Document::find($id);
         $fotoKK = public_path('storage/'.$data->kartu_keluarga);
         unlink($fotoKK);    
-        $fotoKtp = public_path('storage/'.$data->ktp);
-        unlink($fotoKtp);    
-        $fotoSku = public_path('storage/'.$data->sku);
-        unlink($fotoSku); 
-        $fotoTempat = public_path('storage/'.$data->tempat);
-        unlink($fotoTempat); 
+        $fotoAkte = public_path('storage/'.$data->akta_kelahiran);
+        unlink($fotoAkte);    
+        $fotoIjazah = public_path('storage/'.$data->ijazah);
+        unlink($fotoIjazah); 
         
+        if ($data->kartu_indonesia_pintar) {
+            $fotoKIP = public_path('storage/'.$data->kartu_indonesia_pintar);
+            unlink($fotoKIP);
+        }
         $data->delete();
         return response()->json(['success' => 'Data berhasil dihapus']);
     }
-    public function downloadTempat($id)
+    public function downloadFile($id)
     {
         $document = Document::find($id);
-        $file = public_path('storage/'.$document->tempat);
+        $file = public_path('storage/'.$document->ijazah);
         return response()->download($file);
     }
     public function downloadKk($id)
@@ -176,17 +230,16 @@ class DocumentController extends Controller
         $file = public_path('storage/'.$document->kartu_keluarga);
         return response()->download($file);
     }
-    public function downloadKtp($id)
+    public function download_akta_kelahiran($id)
     {
         $document = Document::find($id);
-        $file = public_path('storage/'.$document->ktp);
-        dd($file);
+        $file = public_path('storage/'.$document->akta_kelahiran);
         return response()->download($file);
     }
-    public function downloadSku($id)
+    public function downloadRapor($id)
     {
         $document = Document::find($id);
-        $file = public_path('storage/'.$document->sku);
+        $file = public_path('storage/'.$document->rapor);
         return response()->download($file);
     }
 }

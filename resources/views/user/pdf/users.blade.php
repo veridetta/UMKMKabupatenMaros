@@ -88,7 +88,7 @@
                             <label for="alamat_rumah" class="col-sm-4 col-form-label">Alamat Rumah</label>
                             <?php  $alamat_rumah = $umkm->alamat_rumah." RT ".$umkm->rt_rumah." RW ".$umkm->rw_rumah." Desa/Keluarahan ".$umkm->desa_rumah." Kecamatan ".$umkm->kecamatan_rumah." Kabupaten/Kota".$umkm->kabupaten_rumah." Provinsi ".$umkm->provinsi_rumah." Kode Pos ".$umkm->kode_pos_rumah;?>
                             <div class="col-sm-12">
-                              <input type="text" class="form-control" name="alamat_rumah" id="alamat_rumah" disabled>
+                              <input type="text" class="form-control" name="alamat_rumah" id="alamat_rumah" value="{{$umkm->alamat_rumah}}" disabled>
                             </div>
                           </div>
                         
@@ -96,7 +96,7 @@
                             <label for="alamat_usaha" class="col-sm-4 col-form-label">Alamat Usaha</label>
                             <div class="col-sm-12">
                               <?php  $alamat_usaha = $umkm->alamat_usaha." RT ".$umkm->rt_usaha." RW ".$umkm->rw_usaha." Desa/Keluarahan ".$umkm->desa_usaha." Kecamatan ".$umkm->kecamatan_usaha." Kabupaten/Kota ".$umkm->kabupaten_usaha." Provinsi ".$umkm->provinsi_usaha." Kode Pos ".$umkm->kode_pos_usaha;?>
-                              <input type="text" class="form-control" name="alamat_usaha" id="alamat_usaha" value="{{$alamat_usaha}}" disabled>
+                              <input type="text" class="form-control" name="alamat_usaha" id="alamat_usaha" value="{{$umkm->alamat_usaha}}" disabled>
                             </div>
                           </div>
                         

@@ -37,10 +37,10 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
               <h5 class="card-title">Data UMKM</h5>
               <!-- Table with stripped rows -->
-              <table id="dataTable" class="table table-striped" style="width:100%">
+              <table id="dataTable" class="table table-striped table-sm">
                 <thead>
                   <tr>
                     <th scope="col"></th>
@@ -148,7 +148,7 @@
             '<tr>' +
             '<td>Nomor NIB / P-IRT/NPWP:</td>' +
             '<td>' +
-            d.nomor_nib +
+            d.nib +
             '</td>' +
             '</tr>' +
             '<tr>' +
@@ -531,7 +531,7 @@
               </tr>
               <tr>
                 <td>Nomor NIB / P-IRT / NPWP:</td>
-                <td>@{{nomor_nib}}</td>
+                <td>@{{nib}}</td>
               </tr>
               <tr>
                 <td>Modal:</td>

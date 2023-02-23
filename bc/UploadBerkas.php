@@ -25,9 +25,9 @@ class UploadBerkas extends FormRequest
     {
         return [
             'kartu_keluarga' => 'image|required|mimes:jpeg,png,jpg|max:5120',
-            'ktp' => 'image|required|mimes:jpeg,png,jp|max:5120',
-            'sku' => 'required|mimes:pdf|max:5120',
-            'tempat' => 'required|mimes:jpeg,png,jpg|max:5120',
+            'akta_kelahiran' => 'image|required|mimes:jpeg,png,jp|max:5120',
+            'ijazah' => 'image|required|mimes:jpeg,png,jpg|max:5120',
+            'rapor' => 'required|mimes:pdf|max:5120',
         ];
     }
 }

@@ -31,7 +31,7 @@ class DataUmkmController extends Controller
                             </a>";
                 
                 $button .= '   ';
-
+                /*
                 if($data->status == 2){
                     $button .= "<a class='btn btn-success btn-sm disabled' onClick='editStatus($data->id)' id='btnEditStatus' data-bs-toggle='tooltip' data-bs-placement='top' title='Terima'>
                                     <i class='bi bi-check2-circle'></i>
@@ -42,7 +42,7 @@ class DataUmkmController extends Controller
                                     <i class='bi bi-check2-circle'></i>
                                 </a>";
 
-                }
+                }*/
 
                       
                 return $button;

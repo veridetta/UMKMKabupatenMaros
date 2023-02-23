@@ -57,6 +57,15 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/update-data-umkm',[DataUmkmController::class,'update'])->name('updateDataUmkm');
         Route::post('/hapus-data-umkm',[DataUmkmController::class,'destroy'])->name('hapusDataUmkm');
         Route::post('/update-status',[DataUmkmController::class,'updateStatus'])->name('update-status');
+
+        Route::get('/data-berkas',[DocumentController::class,'dataBerkas'])->name('umkm.index-document');
+        Route::get('/download-tempat/{id}',[DocumentController::class,'downloadTempat'])->name('umkm.download_tempat');
+        Route::get('/download-kk/{id}',[DocumentController::class,'downloadKk'])->name('umkm.download_kk');
+        Route::get('/download-ktp/{id}',[DocumentController::class,'downloadKtp'])->name('umkm.download_ktp');
+        Route::get('/download-sku/{id}',[DocumentController::class,'downloadSku'])->name('umkm.download_sku');
+        Route::post('/edit-document',[DocumentController::class,'edit'])->name('umkm.edit-document');
+        Route::post('/update-document',[DocumentController::class,'update'])->name('umkm.update-document');
+        Route::post('/hapus-document',[DocumentController::class,'destroy'])->name('umkm.destroy-document');
     });
     Route::prefix('admin/home')->name('admin.')->middleware('ensureAdminRole:2')->group(function(){
         //update

@@ -37,8 +37,8 @@
                               <label for="sku" class="col-form-label bold">Surat Keterangan Usaha (SKU)</label>
                               <p class="text-secondary h6">Unggah Surat Keterangan Usaha dalam format <strong>png,jpg,jpeg</strong> dengan ukuran maksimal <strong>5 MB</strong></p>
                               <div class="col-sm-12">
-                                <input type="file" class="form-control-file" name="sku" id="sku" accept="image/*">
-                                <img id="sku_preview" src="#" alt="preview" style="display: none; height: 200px; margin-top: 10px;">
+                                <input type="file" class="form-control-file" name="sku" id="sku" accept="application/pdf">
+                                <embed id="sku_preview" src="#" alt="preview" height="300" width="300" style="display: none; height: 200px; margin-top: 10px;">
                                 @if ($errors->has('sku'))
                                   <p class="text-danger">{{ $errors->first('sku') }}</p>
                                 @endif

@@ -4,7 +4,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UploadBerkas extends FormRequest
+class EditUploadBerkas extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class UploadBerkas extends FormRequest
     public function rules()
     {
         return [
-            'kartu_keluarga' => 'image|required|mimes:jpeg,png,jpg|max:5120',
-            'ktp' => 'image|required|mimes:jpeg,png,jp|max:5120',
-            'sku' => 'required|mimes:pdf|max:5120',
-            'tempat' => 'required|mimes:jpeg,png,jpg|max:5120',
+            'kartu_keluarga' => 'image|mimes:jpeg,png,jpg|max:5120',
+            'akta_kelahiran' => 'image|mimes:jpeg,png,jp|max:5120',
+            'ijazah' => 'image|mimes:jpeg,png,jpg|max:5120',
+            'rapor' => 'required|mimes:pdf|max:5120',
         ];
     }
 }

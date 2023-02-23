@@ -37,7 +37,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body table-responsive">
               <h5 class="card-title">Data UMKM</h5>
               <!-- Table with stripped rows -->
               <table id="dataTable" class="table table-striped" style="width:100%">

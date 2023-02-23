@@ -27,6 +27,11 @@
                 <span>Data UMKM</span>
                 </a>
             </li><!-- End Dashboard Nav -->
+            <li class="nav-item">
+                <a class="nav-link {{(strpos(Route::currentRouteName(), 'user.umkm.index-document') === 0 ? '' : 'collapsed')}}" href="{{route('user.umkm.index-document')}}">
+                <i class="bi bi-circle"></i><span>Berkas UMKM</span>
+                </a>
+            </li>
            
 
         @endif
@@ -43,7 +48,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="{{(strpos(Route::currentRouteName(), 'admin.umkm.index-document') === 0 ? 'active' : '')}}" href="{{route('admin.umkm.index-document')}}">
+                    <a class="{{(strpos(Route::currentRouteName(), 'admin.umkm.index-document') === 0 ? '' : 'collapsed')}}" href="{{route('admin.umkm.index-document')}}">
                     <i class="bi bi-circle"></i><span>Berkas UMKM</span>
                     </a>
                 </li>
