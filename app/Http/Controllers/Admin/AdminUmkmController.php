@@ -60,7 +60,7 @@ class AdminUmkmController extends Controller
         $data->status = 2;
         $data->save();
         //send email
-        //Mail::to($data->email)->send(new UpdateStatus($users));
+        Mail::to($data->email)->send(new UpdateStatus($users));
         return response()->json(['success' => 'Data berhasil diubah']);
     }
     public function update(Request $request)
