@@ -454,7 +454,7 @@
                   $('#cover-spin').hide(0);
                   Swal.fire(
                     'Berhasil!',
-                    'Siswa berhasil diterima.',
+                    'UMKM berhasil diterima.',
                     'success'
                   ).then(function(){
                       $('#dataTable').DataTable().ajax.reload()
