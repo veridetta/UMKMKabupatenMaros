@@ -180,7 +180,6 @@ class DocumentController extends Controller
     {
         $document = Document::find($id);
         $file = public_path('storage/'.$document->ktp);
-        dd($file);
         return response()->download($file);
     }
     public function downloadSku($id)

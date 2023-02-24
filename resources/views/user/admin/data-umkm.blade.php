@@ -148,7 +148,7 @@
             '<tr>' +
             '<td>Nomor NIB / P-IRT/NPWP:</td>' +
             '<td>' +
-            d.nomor_nib +
+            d.nib +
             '</td>' +
             '</tr>' +
             '<tr>' +
@@ -531,7 +531,7 @@
               </tr>
               <tr>
                 <td>Nomor NIB / P-IRT / NPWP:</td>
-                <td>@{{nomor_nib}}</td>
+                <td>@{{nib}}</td>
               </tr>
               <tr>
                 <td>Modal:</td>

@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/download-kk/{id}',[DocumentController::class,'downloadKk'])->name('umkm.download_kk');
         Route::get('/download-ktp/{id}',[DocumentController::class,'downloadKtp'])->name('umkm.download_ktp');
         Route::get('/download-sku/{id}',[DocumentController::class,'downloadSku'])->name('umkm.download_sku');
+        Route::get('/download-all',[DocumentController::class,'downloadAll'])->name('umkm.download_all');
         Route::post('/edit-document',[DocumentController::class,'edit'])->name('umkm.edit-document');
         Route::post('/update-document',[DocumentController::class,'update'])->name('umkm.update-document');
         Route::post('/hapus-document',[DocumentController::class,'destroy'])->name('umkm.destroy-document');

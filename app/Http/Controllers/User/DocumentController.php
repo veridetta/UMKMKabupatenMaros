@@ -156,6 +156,18 @@ class DocumentController extends Controller
         $data->delete();
         return response()->json(['success' => 'Data berhasil dihapus']);
     }
+    public function downloadAll(){
+        $users = DB::table('umkms')->where('users_id',Auth::user()->id)->first();
+        $data = Document::where('umkms_id','=',$users->id)->with(['umkms'])->get();
+        foreach($data as $row){
+            #dd($row->umkms->users_id);
+            if($row->umkms->users_id){
+                $document = Document::find($row->id);
+                $file = public_path('storage/'.$document->ktp);
+                return response()->download($file);
+            }
+        }
+    }
     public function downloadTempat($id)
     {
         $document = Document::find($id);
@@ -172,7 +184,6 @@ class DocumentController extends Controller
     {
         $document = Document::find($id);
         $file = public_path('storage/'.$document->ktp);
-        dd($file);
         return response()->download($file);
     }
     public function downloadSku($id)

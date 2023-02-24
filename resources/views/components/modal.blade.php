@@ -203,7 +203,7 @@
           </div>
           <div class="col-12">
             <label for="desa_rumah" class="form-label">Kelurahan / Desa</label>
-            <input type="text" class="form-control {{$errors->has('desa_rumah') ? 'is-invalid' : ''}}" id="rw_rumah" name="rw_rumah" value="">
+            <input type="text" class="form-control {{$errors->has('desa_rumah') ? 'is-invalid' : ''}}" id="desa_rumah" name="desa_rumah" value="">
             @if ($errors->has('desa_rumah'))
                 <p class="text-danger">{{$errors->first('desa_rumah')}}</p>
             @endif

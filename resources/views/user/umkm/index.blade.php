@@ -423,7 +423,7 @@
           @else
              <div class="alert alert-info  alert-dismissible fade show" role="alert">
                 <h4 class="alert-heading">Terima Kasih Sudah melakukan pendaftaran</h4>
-                <p class="mb-0">Selamat anda telah dinyatakan lulus</p> 
+                <p class="mb-0">Selamat pendaftaran anda telah berhasil</p> 
                 <hr>
                 <div class="row d-flex justify-content-center">
                   <div class="col-md-4 text-center">
@@ -434,12 +434,12 @@
                   <div class="col-md-4 text-center">
                     <button class="btn btn-lg btn-primary rounded-pill" style="width: 3rem; height:3rem;">2</button>
                     <h5 class="mt-2">Formulir Pendaftaran</h5>
-                    <a class="btn btn-success btn-sm rounded-pill" href="{{route('user.download-pdf')}}"><i class="bi bi-eye-fill"></i> Lihat formulir</a>
+                    <a class="btn btn-success btn-sm rounded-pill" href="{{route('user.show-pdf')}}"><i class="bi bi-eye-fill"></i> Lihat formulir</a>
                   </div>
                   <div class="col-sm-4 text-center">
                     <button class="btn btn-lg btn-primary rounded-pill" style="width: 3rem; height:3rem;">3</button>
                     <h5 class="mt-2">Berkas Lainnya</h5>
-                    <a class="btn btn-secondary btn-sm rounded-pill" href="{{route('user.show-pdf')}}"><i class="bi bi-download"></i> Download Berkas</a>
+                    <a class="btn btn-secondary btn-sm rounded-pill" href="{{route('user.umkm.download_all')}}"><i class="bi bi-download"></i> Download Berkas</a>
                   </div>
                 </div>
               </div>

@@ -45,7 +45,7 @@
         @elseif ($umkm->status == 2)
           <div class="alert alert-info  alert-dismissible fade show" role="alert">
               <h4 class="alert-heading">Terima Kasih Sudah melakukan pendaftaran</h4>
-              <p class="mb-0">Selamat anda lulus di {{$umkm->Sekolahs->nama_sekolah}}</p> 
+              <p class="mb-0">Selamat anda berhasil melakukan pendaftaran</p> 
               <hr>
               <div class="row d-flex justify-content-center">
                 <div class="col-md-4 text-center">
