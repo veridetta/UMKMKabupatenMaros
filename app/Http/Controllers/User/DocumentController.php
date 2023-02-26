@@ -86,9 +86,10 @@ class DocumentController extends Controller
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function edit(Document $document)
+    public function edit(Request $request)
     {
-        //
+        $document = Document::find($request->id);
+        return response()->json(['data' => $document]);
     }
 
     /**
