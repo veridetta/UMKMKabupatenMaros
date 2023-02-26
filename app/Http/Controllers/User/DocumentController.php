@@ -101,6 +101,8 @@ class DocumentController extends Controller
      */
     public function update(EditUploadBerkas $request, Document $document)
     {
+        $document = Document::find($request->id);
+        //dd($document->ktp);
         $data = $request->all();
         if($request->file('kartu_keluarga')){
            $foto = public_path('storage/'.$document->kartu_keluarga);
@@ -132,7 +134,8 @@ class DocumentController extends Controller
         }
         $document->update($data);
         $request->session()->flash('success', "Berhasil Melakukan Upload Foto");
-        return redirect(route('user.document.index'));
+        //return redirect(route('user.umkm.index-document'));
+        return response()->json(['success' => 'Data berhasil diubah']);
     }
 
     /**
