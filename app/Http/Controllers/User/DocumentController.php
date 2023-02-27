@@ -111,26 +111,26 @@ class DocumentController extends Controller
             }
             $data['kartu_keluarga'] = $request->file('kartu_keluarga')->store('assets/documents', 'public');
         }
-        if($request->file('akta_kelahiran')){
-            $foto = public_path('storage/'.$document->akta_kelahiran);
+        if($request->file('ktp')){
+            $foto = public_path('storage/'.$document->ktp);
             if (file_exists($foto)) {
                 unlink($foto);
             }
-            $data['akta_kelahiran'] = $request->file('akta_kelahiran')->store('assets/documents', 'public');
+            $data['ktp'] = $request->file('ktp')->store('assets/documents', 'public');
         }
-        if($request->file('ijazah')){
-            $foto = public_path('storage/'.$document->ijazah);
+        if($request->file('sku')){
+            $foto = public_path('storage/'.$document->sku);
             if (file_exists($foto)) {
                 unlink($foto);    
             }
-            $data['ijazah'] = $request->file('ijazah')->store('assets/documents', 'public');
+            $data['sku'] = $request->file('sku')->store('assets/documents', 'public');
         }
-        if($request->file('rapor')){
-            $file = public_path('storage/'.$document->rapor);
-            if ($document->rapor) {
+        if($request->file('tempat')){
+            $file = public_path('storage/'.$document->tempat);
+            if ($document->tempat) {
                 unlink($file);
             }
-            $data['rapor'] = $request->file('rapor')->store('assets/documents', 'public');
+            $data['tempat'] = $request->file('tempat')->store('assets/documents', 'public');
         }
         $document->update($data);
         $request->session()->flash('success', "Berhasil Melakukan Upload Foto");
